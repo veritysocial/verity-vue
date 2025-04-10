@@ -2,8 +2,27 @@
 import * as Card from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { ref } from 'vue';
+import { socket } from '@/components/socket';
+import type { TPostClient } from '@/server/db/schema';
 
-const { data: posts } = await useFetch('/api/getPosts');
+const { data: posts } = await useFetch('/api/posts');
+const message = ref('');
+const messages = ref<TPostClient[]>([]);
+
+socket.on('post', (v) => {
+  messages.value = [v as TPostClient, ...messages.value];
+  console.log(messages.value);
+});
+
+async function submitForm() {
+  await $fetch('/api/posts', {
+    method: 'POST',
+    body: {
+      content: message.value,
+    },
+  });
+}
 </script>
 
 <template>
@@ -17,14 +36,27 @@ const { data: posts } = await useFetch('/api/getPosts');
           >
         </Card.Header>
         <Card.Content>
-          <Textarea id="content" name="content" placeholder="Share your thoughts with the world!" />
+          <Textarea
+            id="content"
+            v-model="message"
+            name="content"
+            placeholder="Share your thoughts with the world!"
+          />
         </Card.Content>
         <Card.Footer>
-          <Button class="cursor-pointer">Post!</Button>
+          <Button class="cursor-pointer" @click="submitForm()">Post!</Button>
         </Card.Footer>
       </Card.Root>
     </SignedIn>
     <div class="mt-8 flex flex-col gap-4 pb-8">
+      <PostCard
+        v-for="post in messages.values()"
+        :key="post.id"
+        :post="{
+          ...post,
+          createdAt: new Date(post.createdAt),
+        }"
+      />
       <PostCard
         v-for="post in posts"
         :key="post.id"
