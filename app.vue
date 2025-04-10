@@ -1,34 +1,50 @@
 <script setup lang="ts">
-import * as Card from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
+import { buttonVariants } from './components/ui/button';
+import { useClerkAppearance } from './lib/useClerkAppearance';
 
-const { data: posts } = await useFetch('/api/getPosts');
+useHead({
+  bodyAttrs: {
+    class: 'dark bg-background',
+  },
+});
 </script>
 
 <template>
-  <main class="dark bg-background min-h-screen w-screen pt-8">
-    <Card.Root class="border-primary mx-auto w-11/12 rounded-lg md:w-1/2">
-      <Card.Header>
-        <Card.Title>Create Post</Card.Title>
-        <Card.Description>Posting from Verity <span class="font-bold text-[#3FB27F]">Vue</span></Card.Description>
-      </Card.Header>
-      <Card.Content>
-        <Textarea id="content" name="content" placeholder="Share your thoughts with the world!" />
-      </Card.Content>
-      <Card.Footer>
-        <Button class="cursor-pointer">Post!</Button>
-      </Card.Footer>
-    </Card.Root>
-    <div class="mt-8 flex flex-col gap-4 pb-8">
-      <PostCard
-        v-for="post in posts"
-        :key="post.id"
-        :post="{
-          ...post,
-          createdAt: new Date(post.createdAt),
+  <div class="text-foreground absolute top-4 right-4 flex flex-col items-end">
+    <VerityLogo />
+    <p class="w-fit">
+      by
+      <a
+        href="https://www.arithefirst.com/"
+        class="text-primary hover:text-primary/90 mr-2 underline"
+        target="_blank"
+        >April Hall</a
+      >
+    </p>
+  </div>
+  <nav class="absolute top-4 left-4">
+    <SignedOut>
+      <SignUpButton
+        mode="modal"
+        :class="`${buttonVariants({ variant: 'default' })} cursor-pointer`"
+        :appearance="useClerkAppearance()"
+      />
+    </SignedOut>
+    <SignedIn>
+      <UserButton
+        :appearance="{
+          ...useClerkAppearance(),
+          elements: {
+            userButtonAvatarBox: {
+              height: '48px',
+              width: '48px',
+            },
+          },
         }"
       />
-    </div>
-  </main>
+    </SignedIn>
+  </nav>
+  <div>
+    <NuxtPage />
+  </div>
 </template>

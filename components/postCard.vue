@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { TPost } from '@/server/db/schema';
+import type { TPostClient } from '@/server/db/schema';
 import * as Card from '@/components/ui/card';
 
-defineProps<{ post: TPost }>();
+defineProps<{ post: TPostClient }>();
 
 const frameWorkColors = {
   svelte: 'text-[#FF3E00]',
@@ -17,10 +17,10 @@ const frameWorkColors = {
   <Card.Root class="border-primary mx-auto w-11/12 rounded-lg md:w-1/2">
     <Card.Header>
       <Card.Title class="flex items-center justify-start gap-2 font-normal">
-        <!-- <img class="h-5 rounded-full" :src="post.image" :alt="`verity user @${post.username}'s profile photo`" /> -->
+        <img class="h-5 rounded-full" :src="post.image" :alt="`verity user @${post.username}'s profile photo`" />
         <div>
-          <!-- <span class="font-bold">@{{ post.username }}</span> -->
-          <span class="text-muted-foreground">on Verity </span>
+          <span class="font-bold">@{{ post.username }}</span>
+          <span class="text-muted-foreground"> on Verity </span>
           <span :class="`${frameWorkColors[post.framework]} font-bold`">{{
             post.framework.charAt(0).toUpperCase() + post.framework.slice(1)
           }}</span>
