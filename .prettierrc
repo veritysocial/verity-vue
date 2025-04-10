@@ -1,0 +1,18 @@
+{
+  "tabWidth": 2,
+  "printWidth": 115,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSameLine": false,
+  "plugins": ["prettier-plugin-vue", "prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "*.vue",
+      "options": {
+        "parser": "vue"
+      }
+    }
+  ]
+}
