@@ -2,6 +2,8 @@
 import * as Card from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+
+const { data: posts } = await useFetch('/api/getPosts');
 </script>
 
 <template>
@@ -18,5 +20,15 @@ import { Textarea } from '@/components/ui/textarea';
         <Button class="cursor-pointer">Post!</Button>
       </Card.Footer>
     </Card.Root>
+    <div class="mt-8 flex flex-col gap-4 pb-8">
+      <PostCard
+        v-for="post in posts"
+        :key="post.id"
+        :post="{
+          ...post,
+          createdAt: new Date(post.createdAt),
+        }"
+      />
+    </div>
   </main>
 </template>
