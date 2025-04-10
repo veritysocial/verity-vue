@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import * as Card from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 </script>
 
 <template>
-  <main>
-    <Card.Root class="bg-primary">
+  <main class="dark bg-background min-h-screen w-screen pt-8">
+    <Card.Root class="border-primary mx-auto w-11/12 rounded-lg md:w-1/2">
       <Card.Header>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Description>Card Description</Card.Description>
+        <Card.Title>Create Post</Card.Title>
+        <Card.Description>Posting from Verity <span class="font-bold text-[#3FB27F]">Vue</span></Card.Description>
       </Card.Header>
-      <Card.Content> Card Content </Card.Content>
-      <Card.Footer> Card Footer </Card.Footer>
+      <Card.Content>
+        <Textarea id="content" name="content" placeholder="Share your thoughts with the world!" />
+      </Card.Content>
+      <Card.Footer>
+        <Button class="cursor-pointer">Post!</Button>
+      </Card.Footer>
     </Card.Root>
   </main>
 </template>
