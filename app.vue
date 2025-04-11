@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 
 <template>
   <ConnectionClient />
-  <div class="text-foreground fixed top-4 right-4 flex flex-col items-end">
+  <a href="/" class="text-foreground fixed top-4 right-4 flex flex-col items-end">
     <VerityLogo />
     <p class="w-fit">
       by
@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
         >April Hall</a
       >
     </p>
-  </div>
+  </a>
   <nav class="fixed top-4 left-4">
     <SignedOut>
       <SignUpButton
