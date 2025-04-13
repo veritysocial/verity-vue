@@ -26,7 +26,7 @@ async function submitForm() {
 </script>
 
 <template>
-  <main class="min-h-screen w-screen pt-8">
+  <div class="min-h-screen w-screen pt-8">
     <SignedIn>
       <Card.Root class="border-primary mx-auto w-11/12 rounded-lg md:w-1/2">
         <Card.Header>
@@ -66,5 +66,5 @@ async function submitForm() {
         }"
       />
     </div>
-  </main>
+  </div>
 </template>

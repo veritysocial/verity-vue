@@ -42,9 +42,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ConnectionClient />
-  <a href="/" class="text-foreground fixed top-4 right-4 flex flex-col items-end">
-    <VerityLogo />
+  <div class="text-foreground fixed top-4 right-4 flex flex-col items-end">
+    <NuxtLink href="/">
+      <VerityLogo />
+    </NuxtLink>
     <p class="w-fit">
       by
       <a
@@ -54,7 +55,7 @@ onBeforeUnmount(() => {
         >April Hall</a
       >
     </p>
-  </a>
+  </div>
   <nav class="fixed top-4 left-4">
     <SignedOut>
       <SignUpButton
@@ -77,7 +78,5 @@ onBeforeUnmount(() => {
       />
     </SignedIn>
   </nav>
-  <div>
-    <NuxtPage />
-  </div>
+  <div><NuxtPage /></div>
 </template>
