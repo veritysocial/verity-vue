@@ -22,7 +22,7 @@ export async function listenToNotifications() {
         ...post,
         username: user.username,
         image: user.imageUrl,
-        createdAt: new Date(post.createdAt),
+        createdAt: new Date(post.time),
       });
     });
 
