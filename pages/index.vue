@@ -15,6 +15,17 @@ socket.on('post', (v) => {
   console.log(messages.value);
 });
 
+useHead({
+  title: 'Verity (Vue Edition)',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Verify (Vertical + Community) is a project built by April Hall to try out a bunch of different javascript frameworks by making the same app in 5 of them',
+    },
+  ],
+});
+
 async function submitForm() {
   await $fetch('/api/posts', {
     method: 'POST',

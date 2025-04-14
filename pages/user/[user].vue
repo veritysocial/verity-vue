@@ -2,6 +2,17 @@
 const route = useRoute();
 
 const { data: data } = await useFetch(`/api/user/${route.params.user}`);
+
+useHead({
+  title: `Verity (Vue Edition) | @${route.params.user}`,
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Verify (Vertical + Community) is a project built by April Hall to try out a bunch of different javascript frameworks by making the same app in 5 of them',
+    },
+  ],
+});
 </script>
 
 <template>
