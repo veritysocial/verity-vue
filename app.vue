@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { buttonVariants } from './components/ui/button';
-import { useClerkAppearance } from './lib/useClerkAppearance';
 import { socket } from '@/components/socket';
 
 useHead({
@@ -58,16 +57,11 @@ onBeforeUnmount(() => {
   </div>
   <nav class="fixed top-4 left-4">
     <SignedOut>
-      <SignUpButton
-        mode="modal"
-        :class="`${buttonVariants({ variant: 'default' })} cursor-pointer`"
-        :appearance="useClerkAppearance()"
-      />
+      <SignUpButton mode="modal" :class="`${buttonVariants({ variant: 'default' })} cursor-pointer`" />
     </SignedOut>
     <SignedIn>
       <UserButton
         :appearance="{
-          ...useClerkAppearance(),
           elements: {
             userButtonAvatarBox: {
               height: '48px',
